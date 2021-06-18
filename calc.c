@@ -150,10 +150,10 @@ char * postfix(char * transformed)
 }
 void calculate(char *postfixed)
 {
-	//printf("%s\n", postfixed);
 	char *ptr = strtok(postfixed, " ");      // " " 공백 문자를 기준으로 문자열을 자름, 포인터 반환
 
 	while(ptr != NULL){
+
 		if(ptr[0] >= '0' && ptr[0] <= '9'){
 			int num=0;
 			do{
@@ -162,7 +162,6 @@ void calculate(char *postfixed)
 			}while(*ptr>='0'&&*ptr<='9');
 
 			calPush(num);
-		
 		}
 		else{
 			double num1=calPop();
@@ -171,25 +170,29 @@ void calculate(char *postfixed)
 			switch(ptr[0]){
 				case '*':
 					calPush(num2*num1);
-					printf("check : %.2f %s\n", num2*num1, ptr+2);
+					//printf("check : %.2f %s\n", num2*num1,ptr++);
+
 					break;
 				case '/':
 					calPush(num2/num1);
-					printf("check : %.2f %s\n", num2/num1, ptr+2);
+					//printf("check : %.2f %s\n", num2/num1,ptr++);
 					break;
 				case '+':
 					calPush(num2+num1);
-					printf("check : %.2f %s\n", num2+num1, ptr+2);
+					//printf("check : %.2f %s\n", num2+num1,ptr++);
 					break;
 				case '-':
 					calPush(num2-num1);
-					printf("check : %.2f %s\n", num2-num1, ptr+2);
+					//printf("check : %.2f %s\n", num2-num1,ptr++);
 					break;
 			}
 		}
 		ptr = strtok(NULL, " ");
 	}
 	printf("result : %f\n",calPop());
+}
+void print(){
+
 }
 char peek(){
 	if(!isEmpty()){

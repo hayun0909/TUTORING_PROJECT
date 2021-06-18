@@ -32,7 +32,7 @@ double calPeek(){
 	}
 }
 
-double calPush(char operator){
+double calPush(double operator){
 	calStack[++calTop]=operator;
 }
 double calPop(){
