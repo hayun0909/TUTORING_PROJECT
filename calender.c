@@ -72,24 +72,28 @@ void add_node(){
    int compare;                 
    scanf("%d %d %d %s",&newnode->year, &newnode->month,&newnode->day,newnode->content);
    getchar();
+   //head가 아무것도 가리키고 있지 않을 때 새로운 노드 추가
    if(head==NULL){
       printf("head->next가 null을 가리킴\n");
       head = newnode;
       newnode->next=NULL;
       //index++;
    }
-   compare=total_days(cur,newnode);
-   else if(compare==1){
+   else if(newnode<cur){
       newnode->next=cur;
       head=newnode;
    }
    else{
-      while(1){
+      while(cur!=NULL){
+         if((cur->next)==NULL){
+            cur->next=newnode;
+            newnode->next=NULL;
+         }
          compare=total_days(cur->next,newnode);
          switch(compare){
             case 1:
-               newnode->next=cur;
-               head=newnode;
+               newnode->next=cur->next;
+               cur->next=newnode;
                break;
             case 2:
                newnode->next=cur->next;
@@ -98,12 +102,12 @@ void add_node(){
             case 3:
                printf("일정을 추가하려면 y 를, 덮어쓰려면 n 를 입력하세요 :");
                char add;
-               scanf("%c",add);
+               scanf("%c",&add);
                if(add=='y'){
-                  dddd;
+                  printf("y 입력함");
                }
                else if(add=='n'){
-
+                  printf("n 입력함");
                }
                else{
                   printf("다시 입력하세요.\n");
@@ -167,9 +171,9 @@ int total_days(schedule *cur, schedule *newnode/*int year, int month, int day*/)
         if(cur_total>newnode_total){
            return 1;
         }
-        else if(cur_total<newnode_total){
+        /*else if(cur_total<newnode_total){
            return 2;
-        }
+        }*/
         else if(cur_total==newnode_total){
            return 3;
         }
