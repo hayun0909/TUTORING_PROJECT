@@ -69,7 +69,7 @@ void schedule_input(){
 void add_node(){
    schedule *newnode = malloc(sizeof(schedule));
    schedule *cur=head;
-   int compare;
+   int compare;                 
    scanf("%d %d %d %s",&newnode->year, &newnode->month,&newnode->day,newnode->content);
    getchar();
    if(head==NULL){
